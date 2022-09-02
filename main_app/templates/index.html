@@ -5,4 +5,13 @@
 <hr />
 <p>Here are all the dranks!</p>
 
+{% for drink in drinks %}
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">{{ drink.name }}</span>
+      <p>Image: {{ drink.image }}</p>
+      <p>Instruction: {{ drink.instructions }}</p>
+    </div>
+  </div>
+{% endfor %}
 {% endblock %}
