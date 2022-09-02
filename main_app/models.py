@@ -12,3 +12,6 @@ class Drink(models.Model):
     image = models.CharField(max_length=500)
     ingredients = forms.MultipleChoiceField(choices = INGREDIENT_CHOICES)
     instructions = models.TextField(max_length=1000)
+    
+    def __str__(self):
+        return self.name
