@@ -1,17 +1,19 @@
-{% extends 'base.html' %}
-{% block content %}
-
-<h1>DRANKS</h1>
-<hr />
-<p>Here are all the dranks!</p>
+{% extends 'base.html' %} {% block content %}
+<section>
+  <div class="row">
+    <h1 class="h1 p-3">DRANKS</h1>
+    <hr />
+    <p>Here are all the dranks!</p>
+  </div>
+</section>
 
 {% for drink in drinks %}
-  <div class="card">
-    <div class="card-content">
-      <span class="card-title">{{ drink.name }}</span>
-      <p>Image: {{ drink.image }}</p>
-      <p>Instruction: {{ drink.instructions }}</p>
-    </div>
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">{{ drink.name }}</span>
+    <p>Image: {{ drink.image }}</p>
+    <p>Instruction: {{ drink.instructions }}</p>
   </div>
-{% endfor %}
-{% endblock %}
+</div>
+
+{% endfor %} {% endblock %}
