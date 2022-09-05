@@ -11,8 +11,8 @@
         <p>Instructions: {{ drink.instructions }}</p>
       </div>
       <div class="">
-        <a href="#">Edit</a>
-        <a href="#">Delete</a>
+        <a href="{% url 'drinks_update' drink.id %}" class="btn btn-primary">Edit</a>
+        <a href="{% url 'drinks_delete' drink.id %}" class="btn btn-danger">Delete</a>
         <a href="/index" class="btn btn-outline-danger">GO BACK</a>
       </div>
     </div>
