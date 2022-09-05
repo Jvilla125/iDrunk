@@ -1,12 +1,27 @@
 from django.shortcuts import render, redirect
 from .models import Drink
 
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
+class DrinkCreate(CreateView):
+  model = Drink
+  fields = '__all__'
+
+class DrinkUpdate(UpdateView):
+  model = Drink
+  fields = '__all__'
+
+class DrinkDelete(DeleteView):
+  model = Drink
+  success_url = '/index/'
+
+
 def signup(request):
   error_message = ''
   if request.method == 'POST':
