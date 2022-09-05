@@ -38,4 +38,9 @@ def logout_view(request):
     success_url = '/index/'
     # Redirect to a success page.
 
+def drinks_detail(request, drink_id):
+  drink = Drink.objects.get(id=drink_id)
+  return render(request, 'drinks/detail.html', {'drink': drink})
+
+
 #class DrinkCreate(LoginRequiredMixin, CreateView):

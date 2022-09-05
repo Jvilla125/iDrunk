@@ -1,0 +1,22 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1 class="h1">Drink Details</h1>
+
+<div class="row">
+  <div class="col">
+    <div class="">
+      <div class="">
+        <span class="">{{ drink.name }}</span>
+        <p>Ingredients:</p>
+        <p>Instructions: {{ drink.instructions }}</p>
+      </div>
+      <div class="">
+        <a href="#">Edit</a>
+        <a href="#">Delete</a>
+        <a href="/index" class="btn btn-outline-danger">GO BACK</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
