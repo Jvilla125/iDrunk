@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from .models import Drink
 
 from django.contrib.auth.forms import UserCreationForm
@@ -23,16 +22,20 @@ def signup(request):
   return render(request, 'registration/signup.html', context)
 
 def home(request):
-    return HttpResponse('<h1>Hello World</h1>')
+    return render(request, 'home.html')
 
 def index(request):
     drinks = Drink.objects.all()
     return render(request, 'index.html', {'drinks': drinks})
 
+@login_required
 def userdrinks(request):
-    return render(request, 'userdrinks.html')
+    drinks = Drink.objects.filter(user=request.user)
+    return render(request, 'userdrinks.html', { 'drinks': drinks })
 
 def logout_view(request):
     logout(request)
     success_url = '/index/'
     # Redirect to a success page.
+
+#class DrinkCreate(LoginRequiredMixin, CreateView):
