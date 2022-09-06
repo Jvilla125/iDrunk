@@ -10,7 +10,6 @@
         <p>Ingredients:</p>
         <p>Instructions: {{ drink.instructions }}</p>
       </div>
-      {% if %}
       <div class="">
         {% if drink.user_id == user.id %}
         <a href="{% url 'drinks_update' drink.id %}" class="btn btn-primary">
