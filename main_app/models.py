@@ -2,7 +2,8 @@ from django.db import models
 from django import forms
 from django.contrib.auth.models import User 
 from django.urls import reverse
-from multiselectfield import MultiSelectField 
+from multiselectfield import MultiSelectField
+
 
 INGREDIENT = (
         ("1", "Tequila"),
@@ -14,10 +15,9 @@ INGREDIENT = (
 
 # Create your models here.
 class Drink(models.Model):
-
     name = models.CharField(max_length=100)
     image = models.CharField(max_length=500)
-    ingredients = MultiSelectField(choices = INGREDIENT)
+    ingredients = MultiSelectField(choices = INGREDIENT, max_length=10)
     instructions = models.TextField(max_length=1000)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     
