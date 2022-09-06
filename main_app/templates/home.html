@@ -1,9 +1,65 @@
-{% extends 'base.html' %} {% block content %}
-
+{% extends 'base.html' %} {% block content %} {% load static %}
 <section>
-  <h1 class="h1">BOTTOMS UP ANDREW YOU SLOTH!</h1>
+  <div class="h1 text-center py-5">iDrünk</div>
+  <div id="head-carousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="5000">
+        <img
+          src="{% static '/img/caro-pic01.jpeg' %}"
+          class="d-block w-100"
+          alt="carousel-pic-1"
+        />
+      </div>
+      <div class="carousel-item" data-bs-interval="5000">
+        <img
+          src="{% static '/img/caro-pic02.jpeg' %}"
+          class="d-block w-100"
+          alt="carousel-pic-2"
+        />
+      </div>
+      <div class="carousel-item" data-bs-interval="5000">
+        <img
+          src="{% static '/img/caro-pic03.jpeg' %}"
+          class="d-block w-100"
+          alt="carousel-pic-3"
+        />
+      </div>
+      <div class="carousel-item" data-bs-interval="5000">
+        <img
+          src="{% static '/img/caro-pic04.jpeg' %}"
+          class="d-block w-100"
+          alt="carousel-pic-4"
+        />
+      </div>
+    </div>
+  </div>
 </section>
-<hr />
-<h2>MAKE DARKER TEXT</h2>
-
+<section>
+  <div class="row">
+    <br />
+    <hr />
+    <div class="h2 text-center">Who We Are</div>
+    <hr />
+    <div class="blockquote text-center">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+      est laborum.
+    </div>
+    <div class="h2 text-center">What We Do</div>
+    <hr />
+    <div class="blockquote text-center">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+      est laborum.
+    </div>
+  </div>
+</section>
 {% endblock %}
