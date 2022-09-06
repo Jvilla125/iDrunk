@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Drink
+from .models import Drink, User
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, logout
@@ -9,12 +9,19 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 class DrinkCreate(LoginRequiredMixin, CreateView):
   model = Drink
-  fields = '__all__'
+  fields = ['name', 'image', 'ingredients', 'instructions']
 
-class DrinkUpdate(LoginRequiredMixin, UpdateView):
-  
+  def form_valid(self, form):
+      form.instance.user = self.request.user
+      return super().form_valid(form)
+
+class DrinkUpdate(LoginRequiredMixin, UpdateView): 
   model = Drink
-  fields = '__all__'
+  fields = ['name', 'image', 'ingredients', 'instructions']
+
+  def form_valid(self, form):
+      form.instance.user = self.request.user
+      return super().form_valid(form)
 
 class DrinkDelete(LoginRequiredMixin,DeleteView):
   model = Drink
