@@ -2,27 +2,31 @@
 
 <h1 class="h1">Drink Details</h1>
 
-<div class="row">
-  <div class="col">
-    <div class="">
-      <div class="">
-        <span class="">{{ drink.name }}</span>
-        <p>Ingredients:{{ drink.ingredients }}</p>
-        <p>Instructions: {{ drink.instructions }}</p>
-      </div>
-      <div class="">
-        {% if drink.user_id == user.id %}
-        <a href="{% url 'drinks_update' drink.id %}" class="btn btn-primary">
-          Edit
-        </a>
-        <a href="{% url 'drinks_delete' drink.id %}" class="btn btn-danger">
-          Delete
-        </a>
-        {% else %} {% endif %}
-        <a href="/index" class="btn btn-outline-danger">GO BACK</a>
-      </div>
-    </div>
-  </div>
+<section class="container">
+  <table class="table-dark">
+    <tbody>
+      <tr>
+        <td>Cocktail:</td>
+        <td>{{ drink.name }}</td>
+      </tr>
+      <tr>
+        <td>Ingredients:</td>
+        <td>{{ drink.get_ingredients_display }}</td>
+      </tr>
+      <tr>
+        <td>Instructions:</td>
+        <td>{{ drink.instructions }}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="">
+  {% if drink.user_id == user.id %}
+  <a href="{% url 'drinks_update' drink.id %}" class="btn btn-primary">Edit</a>
+  <a href="{% url 'drinks_delete' drink.id %}" class="btn btn-danger">Delete</a>
+  {% else %} {% endif %}
+  <a href="/index" class="btn btn-outline-danger">GO BACK</a>
 </div>
 
 {% endblock content %}
