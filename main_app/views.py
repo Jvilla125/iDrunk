@@ -9,15 +9,16 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
-class DrinkCreate(CreateView):
+class DrinkCreate(LoginRequiredMixin, CreateView):
   model = Drink
   fields = '__all__'
 
-class DrinkUpdate(UpdateView):
+class DrinkUpdate(LoginRequiredMixin, UpdateView):
+  
   model = Drink
   fields = '__all__'
 
-class DrinkDelete(DeleteView):
+class DrinkDelete(LoginRequiredMixin,DeleteView):
   model = Drink
   success_url = '/index/'
 
