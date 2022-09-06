@@ -6,13 +6,16 @@ from django.urls import reverse
 INGREDIENT_CHOICES = (
     ("1", "Tequila"),
     ("2", "Vodka"),
+    ("3", "Rum"),
+    ("4", "Lemon"),
+    ("5", "Coke"),
 )
 
 # Create your models here.
 class Drink(models.Model):
     name = models.CharField(max_length=100)
     image = models.CharField(max_length=500)
-    ingredients = forms.MultipleChoiceField(choices = INGREDIENT_CHOICES)
+    ingredients = forms.MultipleChoiceField(choices = INGREDIENT_CHOICES, widget=forms.CheckboxSelectMultiple())
     instructions = models.TextField(max_length=1000)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     

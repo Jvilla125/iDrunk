@@ -10,10 +10,15 @@
         <p>Ingredients:</p>
         <p>Instructions: {{ drink.instructions }}</p>
       </div>
-      {% if %}
       <div class="">
-        <a href="{% url 'drinks_update' drink.id %}" class="btn btn-primary">Edit</a>
-        <a href="{% url 'drinks_delete' drink.id %}" class="btn btn-danger">Delete</a>
+        {% if drink.user_id == user.id %}
+        <a href="{% url 'drinks_update' drink.id %}" class="btn btn-primary">
+          Edit
+        </a>
+        <a href="{% url 'drinks_delete' drink.id %}" class="btn btn-danger">
+          Delete
+        </a>
+        {% else %} {% endif %}
         <a href="/index" class="btn btn-outline-danger">GO BACK</a>
       </div>
     </div>

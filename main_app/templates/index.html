@@ -1,20 +1,27 @@
-{% extends 'base.html' %} {% block content %}
-<section>
-  <div class="row">
-    <h1 class="h1 p-3">DRANKS</h1>
-    <hr />
-    <p>Here are all the dranks!</p>
-  </div>
-</section>
-
-{% for drink in drinks %}
-<a href="{% url 'detail' drink.id %}">
-  <div class="card">
-    <div class="card-content">
-      <span class="card-title">{{ drink.name }}</span>
-      <p>Image: {{ drink.image }}</p>
-      <p>Instruction: {{ drink.instructions }}</p>
+{% extends 'base.html' %} {% block content %} {% load static %}
+<div class="container">
+  <section>
+    <div class="row">
+      <h1 class="h1 p-3">Cocktails</h1>
+      <hr />
     </div>
-  </div>
-</a>
-{% endfor %} {% endblock %}
+  </section>
+
+  <section class="row">
+    {% for drink in drinks %}
+    <div class="card mx-2" style="width: 200px">
+      <img
+        src="{% static 'img/' %}{{ drink.image }}"
+        class="card-img-top ratio ratio-1x1"
+        alt="#"
+      />
+      <div class="card-body">
+        <a href="{% url 'detail' drink.id %}">
+          <h5 class="card-title">{{ drink.name }}</h5>
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </section>
+</div>
+{% endblock %}
