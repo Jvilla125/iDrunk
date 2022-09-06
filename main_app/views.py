@@ -1,8 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Drink
-
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
