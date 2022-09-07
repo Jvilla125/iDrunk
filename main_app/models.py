@@ -23,7 +23,7 @@ INGREDIENT = (
 class Drink(models.Model):
     name = models.CharField(max_length=100)
     image = models.CharField(max_length=500)
-    ingredients = MultiSelectField(choices = INGREDIENT, max_length=10)
+    ingredients = MultiSelectField(choices = INGREDIENT, max_length=50)
     instructions = models.TextField(max_length=1000)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     favorites = models.ManyToManyField(User, related_name='favorite', blank=True)
