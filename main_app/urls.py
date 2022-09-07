@@ -15,4 +15,5 @@ urlpatterns = [
     path('drinks/favorites', views.fav_drinks, name='fav_drinks'),
     path('drinks/<int:drink_id>/add_photo/', views.add_photo, name='add_photo'),
     path('drinks/<int:drink_id>/delete_photo/', views.PhotoDelete.as_view(), name='delete_photo'),
+    path('drinks/<int:drink_id>/add_review/', views.add_review, name='add_review'),
 ]

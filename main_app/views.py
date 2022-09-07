@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
-from .models import Drink, User, Photo
+from .models import Drink, User, Photo, Review
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .forms import ReviewForm
 
 import uuid
 import boto3 
@@ -73,7 +74,8 @@ def logout_view(request):
 def drinks_detail(request, drink_id):
   drink = Drink.objects.get(id=drink_id)
   favs = Drink.objects.filter(favorites=request.user.id)
-  return render(request, 'drinks/detail.html', {'drink': drink, 'favs': favs})
+  form = ReviewForm(request.POST)
+  return render(request, 'drinks/detail.html', {'drink': drink, 'favs': favs, 'review_form': form})
 
 def fav_add(request, id):
   drink = get_object_or_404(Drink, id=id)
@@ -104,3 +106,12 @@ def add_photo(request, drink_id):
         except:
             print('An error occurred uploading file to S3')
     return redirect('detail', drink_id=drink_id)
+
+def add_review(request, drink_id):
+  form = ReviewForm(request.POST)
+  if form.is_valid():
+      new_review = form.save(commit=False)
+      new_review.drink_id = drink_id
+      new_review.save()
+
+  return redirect('detail', drink_id=drink_id)
