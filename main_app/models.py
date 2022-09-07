@@ -44,3 +44,20 @@ class Photo(models.Model):
 
     def __str__(self):
         return f"Photo for drink_id: {self.drink_id} @{self.url}"
+
+class Review(models.Model):
+    RATING_CHOICES = (
+        ('1','🍹'),
+        ('2','🍹🍹'),
+        ('3','🍹🍹🍹'),
+        ('4','🍹🍹🍹🍹'),
+        ('5','🍹🍹🍹🍹🍹'),
+    )
+
+    date = models.DateField(auto_now_add=True)
+    rating = models.CharField(max_length=1, choices=RATING_CHOICES)
+    review = models.TextField(max_length=300)
+    drink = models.ForeignKey(Drink, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.drink} - {self.id}'
