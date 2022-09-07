@@ -26,6 +26,7 @@ class Drink(models.Model):
     ingredients = MultiSelectField(choices = INGREDIENT, max_length=10)
     instructions = models.TextField(max_length=1000)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    favorites = models.ManyToManyField(User, related_name='favorite', blank=True)
     
     def __str__(self):
         return self.name
