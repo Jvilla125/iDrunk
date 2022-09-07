@@ -11,4 +11,5 @@ urlpatterns = [
     path('drinks/create/', views.DrinkCreate.as_view(),  name='drinks_create'),
     path('drinks/<int:pk>/update/', views.DrinkUpdate.as_view(), name='drinks_update'),
     path('drinks/<int:pk>/delete/', views.DrinkDelete.as_view(), name='drinks_delete'),
+    path('fav/<int:fav_id>', views.fav_add, name='fav_add'),
 ]

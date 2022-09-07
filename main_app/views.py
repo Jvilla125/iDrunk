@@ -63,5 +63,16 @@ def drinks_detail(request, drink_id):
   drink = Drink.objects.get(id=drink_id)
   return render(request, 'drinks/detail.html', {'drink': drink})
 
+def fav_add(request, fav_id):
+  drink = get_object_or_404(Drink, fav_id=id)
+  print(drink, '<-----drink: fav_add()')
+  print(request.user, '<-----drink: fav_add()')
+  if drink.favorites.filter(fav_id=request.user.id).exist():
+    drink.favorites.remove(request.user)
+    print('!!!!!TRUE!!!!!')
+  else:
+    drink.favorites.add(request.user)
+    print('!!!!!FALSE!!!!!')
+  return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 #class DrinkCreate(LoginRequiredMixin, CreateView):
