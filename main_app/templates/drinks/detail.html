@@ -5,6 +5,7 @@
 <section class="col-8 offset-2">
   <table class="table-dark">
     <tbody>
+      {% if user.is_authenticated %}
       <tr>
         {% for photo in drink.photo_set.all %}
         <td><img class="responsive-img card-panel" src="{{photo.url}}" /></td>
@@ -22,6 +23,7 @@
         <br />
         <input type="submit" value="Upload Photo" />
       </form>
+      {% endif %}
 
       <tr>
         <td>Cocktail:</td>
@@ -38,6 +40,8 @@
     </tbody>
   </table>
 </section>
+
+{% if user.is_authenticated %}
 <br>
 <br>
 <br>
@@ -78,17 +82,20 @@
     </form>
   </div>
 </section>
+{% endif %}
+
+
 <div class="col-8 offset-2">
   {% if drink.user_id == user.id %}
   <a href="{% url 'drinks_update' drink.id %}" class="btn btn-primary">Edit</a>
   <a href="{% url 'drinks_delete' drink.id %}" class="btn btn-danger">Delete</a>
-  {% else %} {% endif %} {% if drink in favs %}
+  {% else %} {% endif %} {% if user.is_authenticated %} {% if drink in favs %}
   <a href="{% url 'fav_add' drink.id%}" class="btn btn-warning">
     Remove Favorite
   </a>
   {% else %}
   <a href="{% url 'fav_add' drink.id%}" class="btn btn-warning">Add Favorite</a>
-  {% endif %}
+  {% endif %} {% endif %}
   <a href="/index" class="btn btn-outline-danger">GO BACK</a>
 </div>
 
