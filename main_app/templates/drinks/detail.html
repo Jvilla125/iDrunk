@@ -6,6 +6,19 @@
   <table class="table-dark">
     <tbody>
       <tr>
+      {% for photo in drink.photo_set.all %}
+      <td><img class="responsive-img card-panel" src="{{photo.url}}"></td>
+      </tr>
+      <a href="{% url 'photo_delete' drink.id %}" class="btn btn-danger">Delete</a>
+      {% endfor %}
+      <form action="{% url 'add_photo' drink.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+        {% csrf_token %}
+        <input type="file" name="photo-file">
+        <br><br>
+        <input type="submit"  value="Upload Photo">
+      </form>
+      
+      <tr>
         <td>Cocktail:</td>
         <td>{{ drink.name }}</td>
       </tr>
@@ -25,8 +38,12 @@
   {% if drink.user_id == user.id %}
   <a href="{% url 'drinks_update' drink.id %}" class="btn btn-primary">Edit</a>
   <a href="{% url 'drinks_delete' drink.id %}" class="btn btn-danger">Delete</a>
-  <a href="{% url 'fav_add' drink.id%}" class="btn btn-warning">Favorite</a>
   {% else %} {% endif %}
+  {% if drink in favs %}
+  <a href="{% url 'fav_add' drink.id%}" class="btn btn-warning">Remove Favorite</a>
+  {% else %}
+  <a href="{% url 'fav_add' drink.id%}" class="btn btn-warning">Add Favorite</a>
+  {% endif %}
   <a href="/index" class="btn btn-outline-danger">GO BACK</a>
 </div>
 

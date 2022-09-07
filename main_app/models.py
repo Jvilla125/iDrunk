@@ -16,7 +16,7 @@ INGREDIENT = (
     ("30", "Diet Cola"), ("31", "Energy Drink"), ("32", "Ginger Ale"),
     ("33", "Ginger Beer"), ("34", "Grapefruit Juice"), ("35", "Lemon Juice"),
     ("36", "Lemon/Lime Soda"), ("37", "Lime Juice"), ("38", "Orange Juice"),
-    ("39", "Simple Syrup"), ("40", "Tomato Juice"), ("41", "Tonic")
+    ("39", "Simple Syrup"), ("40", "Sour Mix"), ("41", "Tomato Juice"), ("42", "Tonic")
 )
 
 # Create your models here.
@@ -38,3 +38,9 @@ class CustomUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     age = models.PositiveIntegerField()
 
+class Photo(models.Model):
+    url = models.CharField(max_length=200)
+    drink = models.ForeignKey(Drink, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Photo for drink_id: {self.drink_id} @{self.url}"

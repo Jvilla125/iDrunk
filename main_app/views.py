@@ -1,20 +1,28 @@
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
-from .models import Drink, User
+from .models import Drink, User, Photo
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+import uuid
+import boto3 
+
+S3_BASE_URL = 'https://s3-us-west-1.amazonaws.com/'
+BUCKET = 'idrunk-collection'
+
+  
 # Create your views here.
 class DrinkCreate(LoginRequiredMixin, CreateView):
   model = Drink
-  fields = ['name', 'image', 'ingredients', 'instructions']
+  fields = ['name', 'ingredients', 'instructions']
 
   def form_valid(self, form):
       form.instance.user = self.request.user
       return super().form_valid(form)
-
+  
+  
 class DrinkUpdate(LoginRequiredMixin, UpdateView): 
   model = Drink
   fields = ['name', 'image', 'ingredients', 'instructions']
@@ -26,7 +34,10 @@ class DrinkUpdate(LoginRequiredMixin, UpdateView):
 class DrinkDelete(LoginRequiredMixin,DeleteView):
   model = Drink
   success_url = '/index/'
-
+  
+class PhotoDelete(LoginRequiredMixin,DeleteView):
+  model = Photo
+  success_url = '/index/'
 
 def signup(request):
   error_message = ''
@@ -61,7 +72,8 @@ def logout_view(request):
 
 def drinks_detail(request, drink_id):
   drink = Drink.objects.get(id=drink_id)
-  return render(request, 'drinks/detail.html', {'drink': drink})
+  favs = Drink.objects.filter(favorites=request.user.id)
+  return render(request, 'drinks/detail.html', {'drink': drink, 'favs': favs})
 
 def fav_add(request, id):
   drink = get_object_or_404(Drink, id=id)
@@ -79,4 +91,16 @@ def fav_drinks(request):
   print(favs, '<---------favs: fav_drinks()')
   return render(request, 'drinks/favorites.html', {'favs':favs})
 
-#class DrinkCreate(LoginRequiredMixin, CreateView):
+
+def add_photo(request, drink_id):
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file:
+        s3 = boto3.client('s3')
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        try:
+            s3.upload_fileobj(photo_file, BUCKET, key)
+            url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            Photo.objects.create(url=url, drink_id=drink_id)
+        except:
+            print('An error occurred uploading file to S3')
+    return redirect('detail', drink_id=drink_id)
