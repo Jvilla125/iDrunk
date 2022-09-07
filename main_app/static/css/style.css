@@ -21,3 +21,10 @@ footer.page-footer {
 .card {
   color: black;
 }
+
+#id_ingredients {
+  padding: 10px 0px;
+  margin: 10px 0px;
+  max-height: 400px;
+  overflow: scroll;
+}
