@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
 from .models import Drink, User
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.forms import UserCreationForm
@@ -63,16 +63,20 @@ def drinks_detail(request, drink_id):
   drink = Drink.objects.get(id=drink_id)
   return render(request, 'drinks/detail.html', {'drink': drink})
 
-def fav_add(request, fav_id):
-  drink = get_object_or_404(Drink, fav_id=id)
-  print(drink, '<-----drink: fav_add()')
-  print(request.user, '<-----drink: fav_add()')
-  if drink.favorites.filter(fav_id=request.user.id).exist():
+def fav_add(request, id):
+  drink = get_object_or_404(Drink, id=id)
+  if drink.favorites.filter(id=request.user.id).exists():
     drink.favorites.remove(request.user)
     print('!!!!!TRUE!!!!!')
   else:
     drink.favorites.add(request.user)
     print('!!!!!FALSE!!!!!')
   return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+def fav_drinks(request):
+  favs = Drink.objects.filter(favorites=request.user.id)
+  print(request.user.id, '<---------request.user: fav_drinks()')
+  print(favs, '<---------favs: fav_drinks()')
+  return render(request, 'drinks/favorites.html', {'favs':favs})
 
 #class DrinkCreate(LoginRequiredMixin, CreateView):
