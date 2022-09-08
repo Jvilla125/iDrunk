@@ -51,12 +51,12 @@ def home(request):
     return render(request, 'home.html')
 
 def index(request):
-    drinks = Drink.objects.all()
+    drinks = Drink.objects.order_by('name')
     return render(request, 'index.html', {'drinks': drinks})
 
 @login_required
 def userdrinks(request):
-    drinks = Drink.objects.filter(user=request.user)
+    drinks = Drink.objects.filter(user=request.user).order_by('name')
     return render(request, 'userdrinks.html', { 'drinks': drinks })
 
 def logout_view(request):
@@ -78,7 +78,7 @@ def fav_add(request, id):
   return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 def fav_drinks(request):
-  favs = Drink.objects.filter(favorites=request.user.id)
+  favs = Drink.objects.filter(favorites=request.user.id).order_by('name')
   return render(request, 'drinks/favorites.html', {'favs':favs})
 
 @login_required
