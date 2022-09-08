@@ -17,7 +17,7 @@
   <section id="photo" class="col-8 offset-2">
     <div class="row">
       <div class="col-6 offset-3 text-center">
-        {% if drink.photo_set.last.url %}
+        {% if drink.photo_set.first.url %}
         <img class="img-fluid" src="{{ drink.photo_set.last.url }}"/>
         {% else %}
         <img class="img-fluid" src="https://i.imgur.com/6I2vJSr.jpg"/>  
