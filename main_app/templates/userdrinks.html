@@ -1,10 +1,12 @@
 {% extends 'base.html' %} {% block content %} {% load static %}
-
-<h1 class="h1">USER DRANKS</h1>
-<hr />
-<p>Here are all the user dranks!</p>
-
-<section class="row">
+<div class="container">
+  <section id="title">
+    <div class="row">
+      <h1 class="h1 p-3">User Drinks</h1>
+      <hr />
+    </div>
+  </section>
+  <section class="row">
     {% for drink in drinks %}
     <div class="card mx-2" style="width: 200px">
       <img
@@ -19,7 +21,6 @@
       </div>
     </div>
     {% endfor %}
-</section>
-
+  </section>
+</div>
 {% endblock %}
-

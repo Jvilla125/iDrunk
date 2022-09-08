@@ -1,6 +1,5 @@
-{% extends 'base.html' %} {% block content %} {% load static %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 <section>
-  <div class="h1 text-center py-5">iDrünk</div>
   <div id="head-carousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active" data-bs-interval="5000">
@@ -35,23 +34,65 @@
   </div>
 </section>
 <section>
-  <div class="row">
-    <br />
-    <hr />
-    <div class="h2 text-center">Who We Are</div>
-    <hr />
-    <div class="blockquote text-center">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.
+  <div id="logo" class="col-4 offset-4">
+    <img
+      class="img-fluid"
+      src="{% static '/img/iDrunk_logo2_Dark.png' %}"
+      alt="logo"
+    />
+  </div>
+  <div class="h2 text-center">Who We Are</div>
+  <div
+    class="row bg-secondary d-flex justify-content-center"
+    style="padding-top: 70px; padding-bottom: 70px"
+  >
+    <div class="card mx-2 my-2" style="width: 14rem">
+      <img
+        src="{% static '/img/OMS_Jeff.jpeg' %}"
+        class="card-img-top pt-2"
+        alt="photo"
+      />
+      <div class="card-body text-center">
+        <p class="card-text">Chief Booze Officer</p>
+      </div>
     </div>
+    <div class="card mx-2 my-2" style="width: 14rem">
+      <img
+        src="{% static '/img/OMS_Jason.png' %}"
+        class="card-img-top pt-2"
+        alt="photo"
+      />
+      <div class="card-body text-center">
+        <p class="card-text">Chief Booze Officer</p>
+      </div>
+    </div>
+    <div class="card mx-2 my-2" style="width: 14rem">
+      <img
+        src="{% static '/img/OMS_Ben.png' %}"
+        class="card-img-top pt-2"
+        alt="photo"
+      />
+      <div class="card-body text-center">
+        <p class="card-text">Chief Booze Officer</p>
+      </div>
+    </div>
+    <div class="card mx-2 my-2" style="width: 14rem">
+      <img
+        src="{% static '/img/OMS_Drew.jpg' %}"
+        class="card-img-top pt-2"
+        alt="photo"
+      />
+      <div class="card-body text-center">
+        <p class="card-text">Chief Booze Officer</p>
+      </div>
+    </div>
+  </div>
+  <br />
+  <br />
+  <div class="container">
     <div class="h2 text-center">What We Do</div>
     <hr />
-    <div class="blockquote text-center">
+    <div class="col-10 offset-1 blockquote text-center">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
       veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
@@ -61,5 +102,7 @@
       est laborum.
     </div>
   </div>
+  <br />
+  <br />
 </section>
-{% endblock %}
+{% endblock content %}
