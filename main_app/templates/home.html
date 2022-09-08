@@ -1,0 +1,106 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<section>
+  <div id="head-carousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="5000">
+        <img
+          src="{% static '/img/caro-pic01.jpeg' %}"
+          class="d-block w-100"
+          alt="carousel-pic-1"
+        />
+      </div>
+      <div class="carousel-item" data-bs-interval="5000">
+        <img
+          src="{% static '/img/caro-pic02.jpeg' %}"
+          class="d-block w-100"
+          alt="carousel-pic-2"
+        />
+      </div>
+      <div class="carousel-item" data-bs-interval="5000">
+        <img
+          src="{% static '/img/caro-pic03.jpeg' %}"
+          class="d-block w-100"
+          alt="carousel-pic-3"
+        />
+      </div>
+      <div class="carousel-item" data-bs-interval="5000">
+        <img
+          src="{% static '/img/caro-pic04.jpeg' %}"
+          class="d-block w-100"
+          alt="carousel-pic-4"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div id="logo" class="col-4 offset-4">
+    <img
+      class="img-fluid"
+      src="https://i.imgur.com/mNKmKs1.png"
+      alt="logo"
+    />
+  </div>
+  <div class="h2 text-center">Who We Are</div>
+  <div
+    class="row bg-secondary d-flex justify-content-center"
+    style="padding-top: 70px; padding-bottom: 70px"
+  >
+    <div class="card mx-2 my-2" style="width: 14rem">
+      <img
+        src="https://i.imgur.com/sCo2r9M.jpg"
+        class="card-img-top pt-2"
+        alt="photo"
+      />
+      <div class="card-body text-center">
+        <p class="card-text">Jeffrey Villacorta</p>
+      </div>
+    </div>
+    <div class="card mx-2 my-2" style="width: 14rem">
+      <img
+        src="https://i.imgur.com/FTd4cmC.png"
+        class="card-img-top pt-2"
+        alt="photo"
+      />
+      <div class="card-body text-center">
+        <p class="card-text">Jason Shprintz</p>
+      </div>
+    </div>
+    <div class="card mx-2 my-2" style="width: 14rem">
+      <img
+        src="https://i.imgur.com/FE8sYEt.png"
+        class="card-img-top pt-2"
+        alt="photo"
+      />
+      <div class="card-body text-center">
+        <p class="card-text">Ben Currie</p>
+      </div>
+    </div>
+    <div class="card mx-2 my-2" style="width: 14rem">
+      <img
+        src="https://i.imgur.com/1sUSa5O.jpg"
+        class="card-img-top pt-2"
+        alt="photo"
+      />
+      <div class="card-body text-center">
+        <p class="card-text">Drew Liu</p>
+      </div>
+    </div>
+  </div>
+  <br />
+  <br />
+  <div class="container">
+    <div class="h2 text-center">Making The App</div>
+    <hr />
+    <div class="col-10 offset-1 blockquote text-center">
+      When you are at home on a Saturday night and just want to make a drink
+      but don’t remember the name of the mixes for what you have. 
+      Just put in all the drinks that you currently own and this will 
+      make a list of recipes you can make with what alcohol you have
+      and recommend any drinks that can be made with one additional item.
+    </div>
+  </div>
+  <br />
+  <br />
+</section>
+{% endblock content %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+  <section id="title">
+    <div class="row">
+      <h1 class="h1 p-3">Delete Drink</h1>
+      <hr />
+    </div>
+  </section>
+  <section>
+    <h4>
+      Are you sure you want to delete
+      <span class="teal-text">{{ object.name }}</span>
+      ?
+    </h4>
+    <br />
+    <form action="" method="POST">
+      {% csrf_token %}
+      <input class="btn btn-danger" type="submit" value="Yes - Delete!" />
+      <a class="btn btn-primary" href="{% url 'detail' drink.id %}">Cancel</a>
+    </form>
+  </section>
+</div>
+{% endblock %}
