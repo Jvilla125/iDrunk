@@ -1,16 +1,18 @@
 {% extends 'base.html' %} {% block content %}
 <div class="container">
   <section id="title">
-    <div class="row">
-      <h1 class="h1 p-3">Create A New Drink Recipe</h1>
+    <div class="">
+      <h1 class="h1 p-3 text-center">Create A New Drink Recipe</h1>
       <hr />
     </div>
   </section>
-  <form action="" method="post">
-    {% csrf_token %}
-    <table>{{ form.as_table }}</table>
-    <br />
-    <input class="btn btn-primary" type="submit" value="Submit!" />
-  </form>
+  <div class="col-6 offset-3">
+    <form action="" method="post">
+      {% csrf_token %}
+      <table>{{ form.as_table }}</table>
+      <br />
+      <input class="btn btn-primary" type="submit" value="Submit!" />
+    </form>
+  </div>
 </div>
 {% endblock %}

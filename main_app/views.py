@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
-from .models import Drink, User, Photo, Review
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django import forms
 from .forms import ReviewForm
+from .models import Drink, User, Photo, Review
 
 import uuid
 import boto3 
@@ -18,6 +19,11 @@ BUCKET = 'idrunk-collection'
 class DrinkCreate(LoginRequiredMixin, CreateView):
   model = Drink
   fields = ['name', 'ingredients', 'instructions']
+  class Meta:
+    widgets = {
+    'rating': forms.Select(attrs={'class': 'form-control'}),
+    'instructions': forms.Textarea(attrs={'class': 'form-control'}),
+    }
 
   def form_valid(self, form):
       form.instance.user = self.request.user
