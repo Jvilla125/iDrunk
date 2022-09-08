@@ -99,13 +99,9 @@ def add_photo(request, drink_id):
 def add_review(request, drink_id):
   form = ReviewForm(request.POST)
   if form.is_valid():
-      user = request.user
-      print(user, '<---user')
       new_review = form.save(commit=False)
       new_review.drink_id = drink_id
-      new_review.user = 
-      
-      print('')
+      new_review.user = request.user
       new_review.save()
-  return redirect('detail', drink_id=drink_id, user_id=user_id)
+  return redirect('detail', drink_id=drink_id)
 
