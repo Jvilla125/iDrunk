@@ -77,6 +77,7 @@
       <table class="table text-light">
         <thead>
           <tr>
+            <td><strong>User</strong></td>
             <td><strong>Rating</strong></td>
             <td><strong>Review</strong></td>
             <td><strong>Date</strong></td>
@@ -85,6 +86,7 @@
         {% if drink.review_set.count %} {% for rev in drink.review_set.all%}
         <tbody>
           <tr>
+            <td>{{rev.user}}</td>
             <td>{{rev.get_rating_display}}</td>
             <td>{{rev.review}}</td>
             <td>{{rev.date}}</td>
