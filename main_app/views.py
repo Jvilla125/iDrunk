@@ -71,7 +71,10 @@ def drinks_detail(request, drink_id):
   sum = 0
   for r in drinks_rev:
     sum += int(r.rating)
-  average = round(sum / len(drinks_rev), 1)
+  if sum == 0:
+    average = 0
+  else: 
+    average = round(sum / len(drinks_rev), 1)
   form = ReviewForm(request.POST)
   return render(request, 'drinks/detail.html', {'drink': drink, 'favs': favs, 'review_form': form, 'average': average})
 
