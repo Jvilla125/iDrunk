@@ -81,16 +81,12 @@ def fav_add(request, id):
   drink = get_object_or_404(Drink, id=id)
   if drink.favorites.filter(id=request.user.id).exists():
     drink.favorites.remove(request.user)
-    print('!!!!!REMOVE FROM FAV!!!!!')
   else:
     drink.favorites.add(request.user)
-    print('!!!!!ADD TO FAV!!!!!')
   return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 def fav_drinks(request):
   favs = Drink.objects.filter(favorites=request.user.id)
-  print(request.user.id, '<---------request.user: fav_drinks()')
-  print(favs, '<---------favs: fav_drinks()')
   return render(request, 'drinks/favorites.html', {'favs':favs})
 
 

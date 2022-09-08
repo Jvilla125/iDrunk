@@ -11,3 +11,13 @@ class ReviewForm(forms.ModelForm):
             'rating': forms.Select(attrs={'class': 'form-control'}),
             'review': forms.Textarea(attrs={'class': 'form-control'}),
         }
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = ['rating', 'review']
+
+        widgets = {
+            'rating': forms.Select(attrs={'class': 'form-control'}),
+            'review': forms.Textarea(attrs={'class': 'form-control'}),
+        }
