@@ -1,12 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
+from .models import Drink, User, Photo, Review
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django import forms
 from .forms import ReviewForm
-from .models import Drink, User, Photo, Review
 
 import uuid
 import boto3 
@@ -14,25 +13,17 @@ import boto3
 S3_BASE_URL = 'https://s3-us-west-1.amazonaws.com/'
 BUCKET = 'idrunk-collection'
 
-  
-# Create your views here.
 class DrinkCreate(LoginRequiredMixin, CreateView):
   model = Drink
   fields = ['name', 'ingredients', 'instructions']
-  class Meta:
-    widgets = {
-    'rating': forms.Select(attrs={'class': 'form-control'}),
-    'instructions': forms.Textarea(attrs={'class': 'form-control'}),
-    }
 
   def form_valid(self, form):
       form.instance.user = self.request.user
       return super().form_valid(form)
-  
-  
+
 class DrinkUpdate(LoginRequiredMixin, UpdateView): 
   model = Drink
-  fields = ['name', 'image', 'ingredients', 'instructions']
+  fields = ['name', 'ingredients', 'instructions']
 
   def form_valid(self, form):
       form.instance.user = self.request.user
@@ -40,10 +31,6 @@ class DrinkUpdate(LoginRequiredMixin, UpdateView):
 
 class DrinkDelete(LoginRequiredMixin,DeleteView):
   model = Drink
-  success_url = '/index/'
-  
-class PhotoDelete(LoginRequiredMixin,DeleteView):
-  model = Photo
   success_url = '/index/'
 
 def signup(request):
@@ -75,7 +62,6 @@ def userdrinks(request):
 def logout_view(request):
     logout(request)
     success_url = '/index/'
-    # Redirect to a success page.
 
 def drinks_detail(request, drink_id):
   drink = Drink.objects.get(id=drink_id)
@@ -95,7 +81,7 @@ def fav_drinks(request):
   favs = Drink.objects.filter(favorites=request.user.id)
   return render(request, 'drinks/favorites.html', {'favs':favs})
 
-
+@login_required
 def add_photo(request, drink_id):
     photo_file = request.FILES.get('photo-file', None)
     if photo_file:
@@ -108,12 +94,13 @@ def add_photo(request, drink_id):
         except:
             print('An error occurred uploading file to S3')
     return redirect('detail', drink_id=drink_id)
-
+  
+@login_required
 def add_review(request, drink_id):
   form = ReviewForm(request.POST)
   if form.is_valid():
       new_review = form.save(commit=False)
       new_review.drink_id = drink_id
       new_review.save()
-
   return redirect('detail', drink_id=drink_id)
+

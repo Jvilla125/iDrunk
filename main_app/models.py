@@ -34,10 +34,6 @@ class Drink(models.Model):
     def get_absolute_url(self):
         return reverse('detail', kwargs={'drink_id': self.id})
 
-class CustomUser(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    age = models.PositiveIntegerField()
-
 class Photo(models.Model):
     url = models.CharField(max_length=200)
     drink = models.ForeignKey(Drink, on_delete=models.CASCADE)
@@ -55,8 +51,8 @@ class Review(models.Model):
     )
 
     date = models.DateField(auto_now_add=True)
-    rating = models.CharField(max_length=1, choices=RATING_CHOICES)
-    review = models.TextField(max_length=300)
+    rating = models.CharField(max_length=1, choices=RATING_CHOICES, blank=True)
+    review = models.TextField(max_length=300, blank=True)
     drink = models.ForeignKey(Drink, on_delete=models.CASCADE)
 
     def __str__(self):
