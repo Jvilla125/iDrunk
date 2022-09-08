@@ -70,12 +70,13 @@
   <br>
   <br>
   <br>
-  <div class="h3 text-center">Reviews</div>
+  <div>
+    <h3 class="text-center">Reviews</h3>
+    <h5 class="text-center">Average: {{average}}🍹</h5>
+  </div>
   <hr>
   <br>
-
   <section id="reviews" class="row">
-    
     <div class="col-8 offset-2">
       <table class="table text-light">
         <thead>
@@ -103,7 +104,7 @@
       {% endif %}
     </div>
     {% if user.is_authenticated %}
-    <div class="form-group col-6 offset-3">
+    <div class="form-group col-4 offset-4">
       <form action="{% url 'add_review' drink.id %}" method="POST">
         {% csrf_token %} 
         {{review_form.as_p}}
@@ -116,6 +117,5 @@
     </div>
     {% endif %}
   </section>
-  
 </div>
 {% endblock content %}
