@@ -9,11 +9,19 @@
   <section class="row">
     {% for drink in drinks %}
     <div class="card mx-2" style="width: 200px">
+      {% if drink.photo_set.first.url %}
       <img
-        src="{% static 'img/' %}{{ drink.image }}"
-        class="card-img-top ratio ratio-1x1"
+        src="{{ drink.photo_set.last.url }}"
+        class="card-img-top ratio ratio-1x1 pt-2"
         alt="#"
       />
+      {% else %}
+      <img
+        src="https://i.imgur.com/6I2vJSr.jpg"
+        class="card-img-top ratio ratio-1x1 pt-2"
+        alt="#"
+      />
+      {% endif %}
       <div class="card-body">
         <a href="{% url 'detail' drink.id %}">
           <h5 class="card-title">{{ drink.name }}</h5>
