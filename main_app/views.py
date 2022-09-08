@@ -6,6 +6,7 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import ReviewForm
+from django.db.models import Avg
 
 import uuid
 import boto3 
@@ -66,8 +67,13 @@ def logout_view(request):
 def drinks_detail(request, drink_id):
   drink = Drink.objects.get(id=drink_id)
   favs = Drink.objects.filter(favorites=request.user.id)
+  drinks_rev = Review.objects.filter(drink=drink_id)
+  sum = 0
+  for r in drinks_rev:
+    sum += int(r.rating)
+  average = round(sum / len(drinks_rev), 1)
   form = ReviewForm(request.POST)
-  return render(request, 'drinks/detail.html', {'drink': drink, 'favs': favs, 'review_form': form})
+  return render(request, 'drinks/detail.html', {'drink': drink, 'favs': favs, 'review_form': form, 'average': average})
 
 def fav_add(request, id):
   drink = get_object_or_404(Drink, id=id)
@@ -101,6 +107,7 @@ def add_review(request, drink_id):
   if form.is_valid():
       new_review = form.save(commit=False)
       new_review.drink_id = drink_id
+      new_review.user = request.user
       new_review.save()
   return redirect('detail', drink_id=drink_id)
 

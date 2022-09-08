@@ -69,22 +69,28 @@
   </section>
   <br>
   <br>
+  <br>
+  <div>
+    <h3 class="text-center">Reviews</h3>
+    <h5 class="text-center">Average: {{average}}🍹</h5>
+  </div>
   <hr>
   <br>
-  <br>
-  <section id="reviews" class="row col-8 offset-2">
-    <div class="col">
+  <section id="reviews" class="row">
+    <div class="col-8 offset-2">
       <table class="table text-light">
         <thead>
           <tr>
-            <td><strong>Rating</strong></td>
-            <td><strong>Review</strong></td>
-            <td><strong>Date</strong></td>
+            <th><strong>User</strong></th>
+            <th style="width:125px"><strong>Rating</strong></th>
+            <th><strong>Review</strong></th>
+            <th style="width:75px"><strong>Date</strong></th>
           </tr>
         </thead>
         {% if drink.review_set.count %} {% for rev in drink.review_set.all%}
         <tbody>
           <tr>
+            <td>{{rev.user}}</td>
             <td>{{rev.get_rating_display}}</td>
             <td>{{rev.review}}</td>
             <td>{{rev.date}}</td>
@@ -98,7 +104,7 @@
       {% endif %}
     </div>
     {% if user.is_authenticated %}
-    <div class="col form-group ">
+    <div class="form-group col-4 offset-4">
       <form action="{% url 'add_review' drink.id %}" method="POST">
         {% csrf_token %} 
         {{review_form.as_p}}
@@ -109,7 +115,7 @@
         </div>
       </form>
     </div>
+    {% endif %}
   </section>
-  {% endif %}
 </div>
 {% endblock content %}
