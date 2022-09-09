@@ -13,13 +13,13 @@ can be viewed by anyone else to then favorite and save for later.
 # What it looks like
 
 ### All of the drinks!
-![image of drinks](Drinks.png)
+![image of drinks](https://i.imgur.com/GvM9REv.png)
 
 ### Add Your Own Reviews!
-![image of reviews](reviews.png)
+![image of reviews](https://i.imgur.com/AfzpCeR.png)
 
 ### Experts Hard at Work!
-![group photo](GroupShot.png)
+![group photo](https://i.imgur.com/J8jQ0Bb.png)
 
 # Technology
 * Python, Bootstrap, Django, PostgreSQL, Git Hub, CSS, HTML, Amazon Web Servies, S3 Buckets. 
