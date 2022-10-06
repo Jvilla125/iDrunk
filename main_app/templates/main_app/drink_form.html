@@ -9,7 +9,9 @@
   <div class="col-6 offset-3">
     <form action="" method="post">
       {% csrf_token %}
-      <table>{{ form.as_table }}</table>
+      <table>
+        {{ form.as_table }}
+      </table>
       <br />
       <input class="btn btn-primary" type="submit" value="Submit!" />
     </form>

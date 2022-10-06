@@ -1,6 +1,6 @@
 from django.db import models
 from django import forms
-from django.contrib.auth.models import User 
+from django.contrib.auth.models import User
 from django.urls import reverse
 from multiselectfield import MultiSelectField
 
@@ -21,19 +21,23 @@ INGREDIENT = (
 )
 
 # Create your models here.
+
+
 class Drink(models.Model):
     name = models.CharField(max_length=100)
     image = models.CharField(max_length=500)
-    ingredients = MultiSelectField(choices = INGREDIENT, max_length=50)
+    ingredients = MultiSelectField(choices=INGREDIENT, max_length=50)
     instructions = models.TextField(max_length=1000)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    favorites = models.ManyToManyField(User, related_name='favorite', blank=True)
-    
+    favorites = models.ManyToManyField(
+        User, related_name='favorite', blank=True)
+
     def __str__(self):
         return self.name
-    
+
     def get_absolute_url(self):
         return reverse('detail', kwargs={'drink_id': self.id})
+
 
 class Photo(models.Model):
     url = models.CharField(max_length=200)
@@ -42,13 +46,14 @@ class Photo(models.Model):
     def __str__(self):
         return f"Photo for drink_id: {self.drink_id} @{self.url}"
 
+
 class Review(models.Model):
     RATING_CHOICES = (
-        ('1','🍹'),
-        ('2','🍹🍹'),
-        ('3','🍹🍹🍹'),
-        ('4','🍹🍹🍹🍹'),
-        ('5','🍹🍹🍹🍹🍹'),
+        ('1', '🍹'),
+        ('2', '🍹🍹'),
+        ('3', '🍹🍹🍹'),
+        ('4', '🍹🍹🍹🍹'),
+        ('5', '🍹🍹🍹🍹🍹'),
     )
 
     date = models.DateField(auto_now_add=True)
