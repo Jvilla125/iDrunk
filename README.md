@@ -1,14 +1,8 @@
-# The iDrunk App:
-* This app is a catalog of user drinks that people have wanted to save and share within the website.
-* A User can sign up for the website and both post and view drinks made on the website, then favorite any drink on the website onto your user so you don't need to go searching any further than logging into the iDrunk.
+# iDrunk
 
-* There are 3 tabs available. All Drinks, My Drinks, Favorite Drinks.
-* **All Drinks**, holds every drink posted onto the website from many different users and
-can be viewed by anyone else to then favorite and save for later.
-* **My Drinks**, Are the personal drinks that will be saved to your user account and can be updated and deleted per your own personal account.
-* **Favorite Drinks**, Is a list that the user can bookmark or "Favorite" from the All Drinks menu. The purpose is to avoid having to search through the entire list of drinks on our website and only focus on the drinks that you personally only saved/favorited when viewed.
+### A social media app designed around your favorite activity: Drinking! Share your greatest mix drink recipes and discover new ones from people all around the world! Post comments under some of your favorite (or least favorite) drinks, and keep a private collection of some of your personal favorites!
 
-[Deployed link](https://idrunk1.herokuapp.com/)
+[Check It Out Here!](https://idrunk1.herokuapp.com/)
 
 # What it looks like
 
@@ -22,8 +16,7 @@ can be viewed by anyone else to then favorite and save for later.
 ![group photo](https://i.imgur.com/J8jQ0Bb.png)
 
 # Technology
-* Python, Bootstrap, Django, PostgreSQL, Git Hub, CSS, HTML, Amazon Web Servies, S3 Buckets. 
-* Heroku
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![Bootstrap](https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white) ![Django](https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white) ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
 
 # Future improvements
 * Search Bar. Can find the drink you want by typing in the word instead of scrolling around.
